@@ -43,8 +43,8 @@ MapRef.prototype.tick = function ()
 	for ( var i in this.players )
 	{
 		var player = this.players[ i ];
-		player.tick( this );
-		this.updateGridPos( player, 3 );
+		// player.tick( this );
+		// this.updateGridPos( player, 3 );
 	}
 
 	// Draw projectiles and check for collisions
@@ -52,7 +52,7 @@ MapRef.prototype.tick = function ()
 	{
 		var projectile = this.projectiles[ i ];
 		projectile.tick( this );
-		this.updateGridPos( projectile, 4 );
+		// this.updateGridPos( projectile, 4 );
 	}
 
 	this.ticker++;

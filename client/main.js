@@ -11,11 +11,6 @@ var context = mainCanvas.getContext( '2d' ),
 
 	map,
 
-	leaderboard = [
-		{
-			score: 0
-	} ],
-
 	name,
 	user,
 	connect;

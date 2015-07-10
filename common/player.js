@@ -10,7 +10,7 @@ function Player( id, x, y, angle )
 	Tank.call( this, x, y, angle || 0 );
 
 	this.id = id || Math.random();
-	this.name = this.id;
+	this.name = 'Tanky';
 	this.score = 0;
 
 	// Last time a projectile was fired

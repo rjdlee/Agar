@@ -5,7 +5,7 @@ Extends: Rectangle
 
 */
 
-function Projectile( id, x, y, angle, speed )
+function Projectile( pid, x, y, angle, speed )
 {
 	// Extend the Rectangle class
 	Rectangle.call( this,
@@ -26,7 +26,7 @@ function Projectile( id, x, y, angle, speed )
 	this.id = Math.random().toString();
 
 	// Player who shot this projectile's id
-	this.pid = id || '';
+	this.pid = pid || '';
 
 	this.speed = speed || -3;
 	this.velocity = {
@@ -93,7 +93,6 @@ Projectile.prototype.translate = function ( map )
 // Translate and draw bounding box
 Projectile.prototype.tick = function ( map )
 {
-	console.log( this.id, this.pos );
 	var collision = this.translate( map );
 	if ( collision )
 	{
@@ -101,11 +100,10 @@ Projectile.prototype.tick = function ( map )
 
 		if ( collision in map.players )
 		{
-			var player = map.players[ this.pid ];
-
-			// Send events only if the shooter is the user
-			if ( 'key' in player )
-				connect.pushStateEvent( 'hit', collision );
+			// The user object has a key attribute, but the player does not.
+			// Only send the event if the user is hit
+			if ( 'key' in map.players[ collision ] )
+				connect.pushStateEvent( 'hit', this.pid );
 		}
 	}
 };

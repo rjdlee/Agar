@@ -61,7 +61,7 @@ Tank.prototype.translate = function ( boundX, boundY, walls, players )
 		var dotProduct = this.velocity.x * unitVector.x + this.velocity.y * unitVector.y;
 		this.movePos( dotProduct * unitVector.x, dotProduct * unitVector.y );
 
-		return;
+		return true;
 	}
 
 	// Check for collisions with other tanks and cancel velocity in the direction of the tank
@@ -72,7 +72,7 @@ Tank.prototype.translate = function ( boundX, boundY, walls, players )
 		var dotProduct = this.velocity.x * unitVector.x + this.velocity.y * unitVector.y;
 		this.movePos( dotProduct * unitVector.x, dotProduct * unitVector.y );
 
-		return;
+		return true;
 	}
 
 	// If no collisions, increment the speed by velocity

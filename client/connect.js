@@ -97,6 +97,14 @@ function connectHandler( data )
 		map.walls.push( new Wall( wall.pos.x, wall.pos.y, wall.width, wall.height ) );
 	}
 
+	for ( var id in data.projectiles )
+	{
+		var projectile = data.projectiles[ id ];
+		projectiles.push( new Projectile( projectile.pid, projectile.pos.x, projectile.pos.y, projectile.angle.rad, projectile.speed ) );
+	}
+
+	drawLeaderboard( user.id, data.leaderboard );
+
 	animate();
 }
 
@@ -120,18 +128,34 @@ function eventHandler( changeQueue )
 		// Check leaderboard before skipping over user
 		if ( 'leaderboard' in playerChanges )
 		{
-			leaderboard = playerChanges.leaderboard;
-			drawLeaderboard();
+			drawLeaderboard( user.id, playerChanges.leaderboard );
 		}
 
 		if ( 'pos' in playerChanges )
 		{
 			player.setPos( playerChanges.pos.x, playerChanges.pos.y );
+
+			if ( id === user.id )
+				player.camera.translate( player.pos.x, player.pos.y, map.width, map.height );
 		}
 
-		if ( 'projectiles' in playerChanges )
+		if ( 'projectile' in playerChanges )
 		{
-			player.shoot( map.projectiles );
+			var projectileRef = playerChanges.projectile,
+				projectile = new Projectile( id, projectileRef.pos.x, projectileRef.pos.y, projectileRef.angle, 0 );
+
+			projectile.velocity = projectileRef.velocity;
+
+			player.projectiles.push( projectile );
+			map.projectiles[ projectile.id ] = projectile;
+		}
+
+		if ( 'score' in playerChanges )
+		{
+			player.score = playerChanges.score;
+
+			if ( id === user.id )
+				drawScore( player.score );
 		}
 
 		// Skip over the user
@@ -150,42 +174,9 @@ function eventHandler( changeQueue )
 			player.barrel.setAngle( playerChanges.heading );
 		}
 
-		if ( 'speed' in playerChanges )
-		{
-			player.setVelocity( playerChanges.speed );
-		}
-
-		if ( 'angleSpeed' in playerChanges )
-		{
-			player.angle.speed = playerChanges.angleSpeed;
-		}
-
 		if ( 'angle' in playerChanges )
 		{
 			player.setAngle( playerChanges.angle, true );
-		}
-
-		if ( 'shot' in playerChanges )
-		{
-			var victim = playerChanges.shot.who;
-			player.score = playerChanges.shot.score;
-			if ( victim in players )
-			{
-				players[ victim ].score = 0;
-				players[ victim ].setPos( playerChanges.shot.pos.x, playerChanges.shot.pos.y );
-			}
-
-		}
-
-		if ( 'hit' in playerChanges )
-		{
-			var murderer = playerChanges.hit.who;
-			player.score = 0;
-			player.setPos( playerChanges.hit.pos.x, playerChanges.hit.pos.y );
-			if ( murderer in players )
-			{
-				players[ murderer ].score = playerChanges.hit.score;
-			}
 		}
 	}
 }

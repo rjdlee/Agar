@@ -8,40 +8,28 @@ function getClass( name )
 	return Array.prototype.slice.call( document.getElementsByClassName( name ) );
 }
 
-function updateScore( score )
+function drawScore( score )
 {
-	getId( 'score' ).innerHTML = score;
-	// updateLeaderboard( score );
+	getId( 'score' ).innerHTML = 'Score: ' + score;
 }
 
-function updateLeaderboard( score )
+function drawLeaderboard( userID, leaderboard )
 {
-	for ( var i = 0; i < leaderboard.length; i++ )
+	var leaderboardHTML = '<h3>Leaderboard</h3>';
+
+	if ( leaderboard )
 	{
-		if ( leaderboard[ i ].score < score )
+		for ( var i = 0; i < leaderboard.length; i++ )
 		{
-			leaderboard.splice( i, 0,
-			{
-				score: score
-			} );
-			break;
+			var name = leaderboard[ i ].name
+			if ( name.length > 10 )
+				name = name.substr( 0, 10 ) + '...';
+
+			if ( leaderboard[ i ].id === userID )
+				leaderboardHTML += '<li><b>' + name + '</li>';
+			else
+				leaderboardHTML += '<li>' + name + '</li>';
 		}
-	}
-
-	if ( leaderboard.length > 10 )
-		leaderboard.splice( 9, leaderboard.length - 10 );
-}
-
-function drawLeaderboard()
-{
-	var leaderboardHTML = '';
-	for ( var i = 0; i < leaderboard.length; i++ )
-	{
-		var id = leaderboard[ i ].id
-		if ( id.length > 10 )
-			id = id.substr( 0, 10 ) + '...';
-
-		leaderboardHTML += '<li>' + leaderboard[ i ].name + ': ' + leaderboard[ i ].score + '</li>';
 	}
 
 	getId( 'leaderboard' ).innerHTML = leaderboardHTML;
@@ -61,6 +49,8 @@ function toggleMenu()
 	{
 		name = getId( 'menu-name' ).value || 'Tanky';
 		init();
+		drawScore( 0 );
+		drawLeaderboard();
 		toggleMenu();
 	} );
 } )();

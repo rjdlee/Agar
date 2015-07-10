@@ -47,6 +47,7 @@ function PlayerRef( id, x, y )
 		x: 0,
 		y: 0
 	};
+
 	this.lastPosTick = 0;
 
 	Player.call( this, id, x, y );
@@ -66,18 +67,20 @@ PlayerRef.prototype.setPosWarp = function ( pos, map )
 		dPosSpeed;
 
 	// No time has passed so don't do anything
-	if ( dTick === 0 )
-		return false;
+	// if ( dTick === 0 )
+	// return false;
 
 	// Don't do anything if there is no change in position
 	if ( dPos === 0 )
 		return false;
 
-	dPosSpeed = dPosSpeed / ( dTick );
+	// dPosSpeed = dPos / dTick;
+
+	// console.log(dPosSpeed, dPos, dTick);
 
 	// Use server generated position if the client position seems off
-	if ( dPosSpeed > 1.6 )
-		return false;
+	// if ( dPosSpeed > 1.6 )
+	// return false;
 
 	this.movePos( dPosVector.x, dPosVector.y );
 	this.ref.pos = this.pos;
@@ -129,9 +132,12 @@ PlayerRef.prototype.shoot = function ( map )
 	if ( map.ticker - this.lastShotTick < 20 )
 		return false;
 
-	this.ref.projectiles = this.projectiles;
+	var projectile = Player.prototype.shoot.call( this, this.projectiles );
+	this.ref.projectiles.push( projectile );
 
-	return true;
+	this.lastShotTick = map.ticker;
+
+	return projectile;
 };
 
 module.exports = function ( id, x, y )

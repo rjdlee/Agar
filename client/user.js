@@ -36,7 +36,10 @@ User.prototype.tick = function ( map )
 	if ( this.rotate( map.width, map.height, map.walls, map.players ) )
 	{
 		this.camera.translate( this.pos.x, this.pos.y, map.width, map.height );
+
+		// The player can rotate and translate if they are rotating
 		connect.pushStateEvent( 'angle', this.angle.rad );
+		connect.pushStateEvent( 'pos', this.pos );
 	}
 
 	// Translate if there is speed
@@ -79,10 +82,7 @@ function keyDownListener( e )
 	if ( e.keyCode === 38 || e.keyCode === 87 )
 	{
 		if ( !this.key.down )
-		{
 			this.setVelocity( 1.5 );
-			connect.pushStateEvent( 'key', 0 );
-		}
 
 		this.key.up = true;
 	}
@@ -91,10 +91,7 @@ function keyDownListener( e )
 	if ( e.keyCode === 40 || e.keyCode === 83 )
 	{
 		if ( !this.key.up )
-		{
 			this.setVelocity( -1.5 );
-			connect.pushStateEvent( 'key', 1 );
-		}
 
 		this.key.down = true;
 	}
@@ -103,10 +100,7 @@ function keyDownListener( e )
 	if ( e.keyCode === 37 || e.keyCode === 65 )
 	{
 		if ( !this.key.right )
-		{
 			this.angle.speed = -0.05;
-			connect.pushStateEvent( 'key', 2 );
-		}
 
 		this.key.left = true;
 	}
@@ -115,10 +109,7 @@ function keyDownListener( e )
 	if ( e.keyCode === 39 || e.keyCode === 68 )
 	{
 		if ( !this.key.left )
-		{
 			this.angle.speed = 0.05;
-			connect.pushStateEvent( 'key', 3 );
-		}
 
 		this.key.right = true;
 	}
@@ -132,16 +123,9 @@ function keyUpListener( e )
 		this.key.up = false;
 
 		if ( this.key.down )
-		{
 			this.setVelocity( -1.5 );
-			connect.pushStateEvent( 'key', 1 );
-		}
 		else
-		{
 			this.setVelocity( 0 );
-		}
-
-		connect.pushStateEvent( 'key', 4 );
 	}
 
 	// Backward
@@ -150,16 +134,9 @@ function keyUpListener( e )
 		this.key.down = false;
 
 		if ( this.key.up )
-		{
 			this.setVelocity( 1.5 );
-			connect.pushStateEvent( 'key', 0 );
-		}
 		else
-		{
 			this.setVelocity( 0 );
-		}
-
-		connect.pushStateEvent( 'key', 5 );
 	}
 
 	// Left
@@ -168,16 +145,9 @@ function keyUpListener( e )
 		this.key.left = false;
 
 		if ( this.key.right )
-		{
 			this.angle.speed = 0.05;
-			connect.pushStateEvent( 'key', 3 );
-		}
 		else
-		{
 			this.angle.speed = 0;
-		}
-
-		connect.pushStateEvent( 'key', 6 );
 	}
 
 	// Right
@@ -186,15 +156,8 @@ function keyUpListener( e )
 		this.key.right = false;
 
 		if ( this.key.left )
-		{
 			this.angle.speed = -0.05;
-			connect.pushStateEvent( 'key', 2 );
-		}
 		else
-		{
 			this.angle.speed = 0;
-		}
-
-		connect.pushStateEvent( 'key', 7 );
 	}
 }
