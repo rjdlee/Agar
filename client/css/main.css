@@ -1,0 +1,72 @@
+body {
+	margin: 0;
+	font-size: 0;
+	font-family: arial;
+}
+
+	.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10
+	{
+		vertical-align: top;
+		display: inline-block;
+		font-size: 1rem;
+	}
+
+	.col-1 { width: calc(10%); }
+	.col-2 { width: calc(20%); }
+	.col-3 { width: calc(30%); }
+	.col-4 { width: calc(40%); }
+	.col-5 { width: calc(50%); }
+	.col-6 { width: calc(60%); }
+	.col-7 { width: calc(70%); }
+	.col-8 { width: calc(80%); }
+	.col-9 { width: calc(90%); }
+	.col-10 { width: calc(100%); }
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+	#main-canvas {
+	}
+
+	#terrain-canvas {
+	}
+
+#score, #leaderboard, #menu
+{
+	position: absolute;
+	z-index: 999999;
+}
+
+	#score
+	{
+		left: 1rem;
+		top: 1rem;
+	}
+
+	#leaderboard
+	{
+		right: 1rem;
+		top: 1rem;
+	}
+
+	#menu
+	{
+		left: 20%;
+		top: 7.5%;
+		padding: 1rem 5%;
+		width: 50%;
+		background: #FFF;
+		border: 1px solid #CCC;
+		border-radius: 1rem;
+	}
+
+		.key
+		{
+			line-height: 2.25rem;
+			padding: 0.5rem;
+			border: 1px solid #CCC;
+			border-radius: 5px;
+		}
