@@ -31,7 +31,7 @@ function Connect()
 	this.socket.on( 'connect_error', function ()
 	{
 		if ( this.socket.io.uri === 'http://localhost:8888' )
-			this.socket.io.uri = 'http://104.236.222.105:8888';
+			this.socket.io.uri = 'http://tankti.me:8888';
 		else
 			this.socket.io.uri = 'http://localhost:8888';
 	}.bind( this ) );
@@ -135,7 +135,7 @@ function eventHandler( changeQueue )
 		{
 			if ( id === user.id )
 			{
-				if ( Math.pow( playerChanges.pos.x - player.pos.x, 2 ) + Math.pow( playerChanges.pos.y - player.pos.y, 2 ) > 10 )
+				if ( Math.pow( playerChanges.pos.x - player.pos.x, 2 ) + Math.pow( playerChanges.pos.y - player.pos.y, 2 ) > 20 )
 					player.setPos( playerChanges.pos.x, playerChanges.pos.y );
 				player.camera.translate( player.pos.x, player.pos.y, map.width, map.height );
 			}
