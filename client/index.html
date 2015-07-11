@@ -2,13 +2,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link href='css/main.css' rel='stylesheet'/>
-	<title>Lii Tanks</title>
+	<title>Tank Time</title>
 </head>
 <body>
-<div id='menu'>
+<div id='menu' class='unselectable'>
 	<div class='col-5'>
-	<h1>Tanks</h1>
-	<p>You are tank. Shoot other tank.</p>
+	<h1>Tank Time</h1>
+	<p>You are a tank, shoot the other tanks.</p>
 	<input id='menu-name' type='text' placeholder='Name'/><button id='menu-play'>Play</button>
 	</div>
 	<div class='col-5'>
@@ -39,8 +39,8 @@
 	</table>
 	</div>
 </div>
-<div id='score'></div>
-<ol id='leaderboard'></ol>
+<div id='score' class='unselectable'></div>
+<ol id='leaderboard' class='unselectable'></ol>
 <canvas id='main-canvas' width=1200 height=710></canvas>
 <canvas id='terrain-canvas' width=1200 height=710></canvas>
 <script src='../server/node_modules/socket.io/node_modules/socket.io-client/socket.io.js'></script>
