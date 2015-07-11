@@ -1,10 +1,10 @@
-var mainCanvas = document.getElementById( 'main-canvas' ),
+var width = window.innerWidth,
+	height = window.innerHeight,
+	mainCanvas = document.getElementById( 'main-canvas' ),
 	terrainCanvas = document.getElementById( 'terrain-canvas' );
 
-mainCanvas.width = window.innerWidth;
-mainCanvas.height = window.innerHeight;
-terrainCanvas.width = mainCanvas.width;
-terrainCanvas.height = mainCanvas.height;
+mainCanvas.width = terrainCanvas.width = width;
+mainCanvas.height = terrainCanvas.height = height;
 
 var context = mainCanvas.getContext( '2d' ),
 	terrainContext = terrainCanvas.getContext( '2d' ),
@@ -35,10 +35,10 @@ function draw()
 	if ( !map || !user )
 		return false;
 
-	context.clearRect( 0, 0, map.width, map.height );
+	context.clearRect( 0, 0, width, height );
 	context.beginPath();
 
-	terrainContext.clearRect( 0, 0, map.width, map.height );
+	terrainContext.clearRect( 0, 0, width, height );
 	terrainContext.beginPath();
 
 	map.tick();
