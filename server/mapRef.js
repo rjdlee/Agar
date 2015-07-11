@@ -25,6 +25,7 @@ function MapRef( width, height )
 	};
 
 	this.grid;
+	this.tileSize = 50;
 
 	Map.call( this, width, height );
 
@@ -125,8 +126,8 @@ Map.prototype.placePlayer = function ( player )
 Map.prototype.generateMap = function ()
 {
 	var gridSize = this.tileSize,
-		gridWidth = this.width / gridSize,
-		gridHeight = this.height / gridSize,
+		gridWidth = Math.floor( this.width / gridSize ),
+		gridHeight = Math.floor( this.height / gridSize ),
 		grid = new Array( gridHeight ),
 		wallTiles = [],
 
