@@ -133,10 +133,14 @@ function eventHandler( changeQueue )
 
 		if ( 'pos' in playerChanges )
 		{
-			player.setPos( playerChanges.pos.x, playerChanges.pos.y );
-
 			if ( id === user.id )
+			{
+				if ( Math.pow( playerChanges.pos.x - player.pos.x, 2 ) + Math.pow( playerChanges.pos.y - player.pos.y, 2 ) < 10 )
+					player.setPos( playerChanges.pos.x, playerChanges.pos.y );
 				player.camera.translate( player.pos.x, player.pos.y, map.width, map.height );
+			}
+			else
+				player.setPos( playerChanges.pos.x, playerChanges.pos.y );
 		}
 
 		if ( 'projectile' in playerChanges )
