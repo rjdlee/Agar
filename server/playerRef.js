@@ -82,7 +82,8 @@ PlayerRef.prototype.setPosWarp = function ( pos, map )
 	// if ( dPosSpeed > 1.6 )
 	// return false;
 
-	this.movePos( dPosVector.x, dPosVector.y );
+	// this.movePos( dPosVector.x, dPosVector.y );
+	this.pos = pos;
 	this.ref.pos = this.pos;
 	this.lastPosTick = map.ticker;
 
