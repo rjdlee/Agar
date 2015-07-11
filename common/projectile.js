@@ -43,8 +43,8 @@ Projectile.prototype.constructor = Projectile;
 // Bounce off an unrotated rectangle or map boundary
 Projectile.prototype.bounce = function ( edge )
 {
-	// Return if the projectile has bounced more than twice
-	if ( this.bounceCount > 1 )
+	// Return if the projectile has bounced more than once
+	if ( this.bounceCount > 0 )
 		return false;
 
 	this.bounceCount++;

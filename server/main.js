@@ -2,8 +2,8 @@ var Player = require( './playerRef' ),
 	Map = require( './mapRef' ),
 	Scoreboard = require( './scoreboard' );
 
-var boundX = 1300,
-	boundY = 800,
+var boundX = 1960,
+	boundY = 1080,
 
 	map = new Map( boundX, boundY ),
 
