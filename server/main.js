@@ -163,6 +163,9 @@ function playerEventHandler( e )
 			assailant = map.players[ aid ],
 			assailantLog = aid in stateQueue ? stateQueue[ aid ] : new Object();
 
+		// Add a hit flag to the player log
+		playerLog.hit = 1;
+
 		// Move the player to a new place
 		playerLog.pos = map.placePlayer( player );
 
