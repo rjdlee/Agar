@@ -41,7 +41,7 @@ Connect.prototype.errorHandler = function ()
 	this.socket.on( 'connect_error', function ()
 	{
 		if ( this.socket.io.uri === 'http://localhost:3000' )
-			this.socket.io.uri = 'http://104.236.222.105:3000';
+			this.socket.io.uri = 'http://agar.rileedesign.com';
 		else
 			this.socket.io.uri = 'http://localhost:3000';
 	}.bind( this ) );
