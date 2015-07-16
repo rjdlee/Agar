@@ -148,10 +148,9 @@ Player.prototype.setToPos = function ( x, y )
 
 	for ( var i in this.cells )
 	{
+		var cell = this.cells[ i ];
 		console.log( x, cell.pos.x, y, cell.pos.y );
-
-		var cell = this.cells[ i ],
-			unitVector = new Vector( x - cell.pos.x, y - cell.pos.y ).unitVector(),
+		var unitVector = new Vector( x - cell.pos.x, y - cell.pos.y ).unitVector(),
 
 			// Speed decreases with cell size
 			speed = 100 / cell.radius;
