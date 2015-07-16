@@ -15,6 +15,7 @@ function Connect()
 	}.bind( this ) );
 
 	this.setListeners();
+	errorHandler();
 }
 
 Connect.prototype.play = function ()
@@ -82,7 +83,7 @@ function errorHandler()
 	this.socket.on( 'connect_error', function ()
 	{
 		if ( this.socket.io.uri === 'http://localhost:8888' )
-			this.socket.io.uri = 'http://tankti.me:8888';
+			this.socket.io.uri = 'http://agar.tankti.me:8888';
 		else
 			this.socket.io.uri = 'http://localhost:8888';
 	}.bind( this ) );
