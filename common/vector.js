@@ -12,6 +12,8 @@ if ( typeof window === 'undefined' )
 
 function Vector( x, y, z )
 {
+	console.log( x, y, z );
+
 	this.x = x || 0;
 	this.y = y || 0;
 	this.z = z || 0;
@@ -85,6 +87,8 @@ Vector.prototype.project = function ( vector )
 Vector.prototype.unitVector = function ()
 {
 	var length = this.length();
+
+	console.log( 'TWO', this.x, this.y, this.z );
 
 	return new Vector(
 		Math.sign( this.x ) * Math.pow( this.x, 2 ) / length,
