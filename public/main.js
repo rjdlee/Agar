@@ -24,11 +24,6 @@ function isNumeric( n )
 	return !isNaN( parseFloat( n ) ) && isFinite( n );
 }
 
-Math.round = function ( num )
-{
-	return ( 0.5 + num ) << 0;
-};
-
 function init()
 {
 	if ( animateInterval )

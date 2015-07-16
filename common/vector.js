@@ -84,7 +84,7 @@ Vector.prototype.project = function ( vector )
 // Return the unit vector of this vector
 Vector.prototype.unitVector = function ()
 {
-	console.log( 'TWO', Math.sign( 2 ), this.x, this.y, this.z );
+	console.log( 'TWO', this.x, this.y, this.z );
 
 	var length = this.length(),
 		x = this.x ? Math.sign( this.x ) * Math.pow( this.x, 2 ) / length : 0,
@@ -137,4 +137,23 @@ Vector.prototype.toObject = function ()
 		vectorObject.z = this.z;
 
 	return vectorObject;
+};
+
+
+/* Polyfill and optimized Math functions */
+
+
+Math.sign = Math.sign || function ( x )
+{
+	x = +x; // convert to a number
+	if ( x === 0 || isNaN( x ) )
+	{
+		return x;
+	}
+	return x > 0 ? 1 : -1;
+}
+
+Math.round = function ( num )
+{
+	return ( 0.5 + num ) << 0;
 };
