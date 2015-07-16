@@ -6,7 +6,7 @@ Connection with the server over SocketIO
 
 function Connect()
 {
-	this.socket = io( 'http://localhost:8080' );
+	this.socket = io( 'http://localhost:2222' );
 
 	this.socket.on( 'connect', function ()
 	{
@@ -40,10 +40,10 @@ Connect.prototype.errorHandler = function ()
 	// Attempt different servers if failed to connect to this one
 	this.socket.on( 'connect_error', function ()
 	{
-		if ( this.socket.io.uri === 'http://localhost:8080' )
-			this.socket.io.uri = 'http://agar.rileedesign.com:8080';
+		if ( this.socket.io.uri === 'http://localhost:2222' )
+			this.socket.io.uri = 'http://agar.rileedesign.com:2222';
 		else
-			this.socket.io.uri = 'http://localhost:8080';
+			this.socket.io.uri = 'http://localhost:2222';
 	}.bind( this ) );
 }
 
