@@ -158,7 +158,7 @@ function eventQueueHandler( e )
 
 function eventHandler( data )
 {
-	if ( !this.id in map.players )
+	if ( !( this.id in map.players ) )
 		return;
 
 	if ( data[ 0 ] === 'toPos' )
