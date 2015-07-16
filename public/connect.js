@@ -6,7 +6,7 @@ Connection with the server over SocketIO
 
 function Connect()
 {
-	this.socket = io( 'http://localhost:8888' );
+	this.socket = io( 'http://localhost:6666' );
 
 	this.socket.on( 'connect', function ()
 	{
@@ -82,10 +82,10 @@ function errorHandler()
 	// Attempt different servers if failed to connect to this one
 	this.socket.on( 'connect_error', function ()
 	{
-		if ( this.socket.io.uri === 'http://localhost:8888' )
-			this.socket.io.uri = 'http://agar.tankti.me:8888';
+		if ( this.socket.io.uri === 'http://localhost:6666' )
+			this.socket.io.uri = 'http://agar.tankti.me:6666';
 		else
-			this.socket.io.uri = 'http://localhost:8888';
+			this.socket.io.uri = 'http://localhost:6666';
 	}.bind( this ) );
 }
 

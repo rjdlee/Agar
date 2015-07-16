@@ -9,8 +9,8 @@ var express = require( 'express' ),
 
 	main = require( './server/main' )( io );
 
-app.listen( 8080 );
-ioApp.listen( 8888 );
+app.listen( 6060 );
+ioApp.listen( 6666 );
 
 app.use( '/common', express.static( __dirname + '/common' ) );
 app.use( '/node_modules', express.static( __dirname + '/node_modules' ) );
