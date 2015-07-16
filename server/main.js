@@ -158,6 +158,8 @@ function eventQueueHandler( e )
 
 function eventHandler( data )
 {
+	console.log( map.players, this.id, this.id in map.players );
+
 	if ( !( this.id in map.players ) )
 		return;
 
