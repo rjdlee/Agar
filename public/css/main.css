@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	font-size: 0;
 	font-family: arial;
+	overflow: hidden;
 }
 
 	.unselectable
@@ -34,17 +35,36 @@ body {
 	.col-9 { width: calc(90%); }
 	.col-10 { width: calc(100%); }
 
-canvas {
+canvas, #cell-canvas {
 	position: absolute;
 	top: 0;
 	left: 0;
+
+	transform-origin: 50vw 50vh;
 }
 
 	#main-canvas {
 	}
 
+	#grid-canvas {
+	}
+
 	#terrain-canvas {
 	}
+
+.circle {
+	position: absolute;
+	border-radius: 50%;
+	border: 5px solid #F6F6F6;
+
+	font-size: 1rem;
+	color: #AAA;
+	text-align: center;
+
+	background-color: #FFF;
+	background-size: cover;
+	background-position: 50% 50%;
+}
 
 #score, #leaderboard, #menu
 {
@@ -77,11 +97,3 @@ canvas {
 		border: 1px solid #CCC;
 		border-radius: 1rem;
 	}
-
-		.key
-		{
-			line-height: 2.25rem;
-			padding: 0.5rem;
-			border: 1px solid #CCC;
-			border-radius: 5px;
-		}

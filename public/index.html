@@ -1,0 +1,46 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href='css/main.css' rel='stylesheet'/>
+	<title>Agario</title>
+</head>
+<body>
+<div id='menu' class='unselectable'>
+	<div class='col-5'>
+		<h1>Agario</h1>
+		<p>You are a cell.</p>
+		<input id='menu-name' type='text' placeholder='Name'/><button id='menu-play'>Play</button>
+	</div>
+</div>
+<div id='score' class='unselectable'></div>
+<ol id='leaderboard' class='unselectable'></ol>
+<canvas id='grid-canvas' width=1200 height=710 moz-opaque></canvas>
+<canvas id='food-canvas' width=1200 height=710></canvas>
+<canvas id='main-canvas' width=1200 height=710></canvas>
+<div id='cell-canvas'></div>
+<canvas id='virus-canvas' width=1200 height=710></canvas>
+
+<script src='../node_modules/socket.io/node_modules/socket.io-client/socket.io.js'></script>
+
+<script type='text/javascript' src='../common/config.js'></script>
+<script type='text/javascript' src='../common/bison.js'></script>
+<script type='text/javascript' src='../common/vector.js'></script>
+<script type='text/javascript' src='../common/circle.js'></script>
+<script type='text/javascript' src='../common/food.js'></script>
+<script type='text/javascript' src='../common/virus.js'></script>
+<script type='text/javascript' src='../common/cell.js'></script>
+<script type='text/javascript' src='../common/queue.js'></script>
+<script type='text/javascript' src='../common/player.js'></script>
+<script type='text/javascript' src='../common/quadtree.js'></script>
+<script type='text/javascript' src='../common/map.js'></script>
+
+<script type='text/javascript' src='domelement.js'></script>
+<script type='text/javascript' src='ui.js'></script>
+<script type='text/javascript' src='animationFrame.js'></script>
+<script type='text/javascript' src='connect.js'></script>
+<script type='text/javascript' src='camera.js'></script>
+<script type='text/javascript' src='controller.js'></script>
+<script type='text/javascript' src='main.js'></script>
+
+</body>
+</html>

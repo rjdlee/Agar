@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="141" height="141">
+
+ <g transform="translate(70.5,70.5) rotate(45) translate(-50,-50)">
+  <polygon fill="#000000" stroke="none" stroke-width="0" points="0,0 20,0 20,40 40,40 40,0 100,0 100,20 60,20 60,40 100,40 100,100 80,100 80,60 60,60 60,100 0,100 0,80 40,80 40,60 0,60 0,0"/>
+ </g>
+</svg>
