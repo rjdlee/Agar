@@ -1,6 +1,6 @@
 var express = require( 'express' ),
 	app = express(),
-	server = app.listen( 2222, '127.0.0.1', function ()
+	server = app.listen( 3000, '127.0.0.1', function ()
 	{
 		console.log( 'Listening at http://%s:%s', server.address().address, server.address().port );
 	} ),
