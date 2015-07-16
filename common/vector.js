@@ -84,12 +84,12 @@ Vector.prototype.project = function ( vector )
 // Return the unit vector of this vector
 Vector.prototype.unitVector = function ()
 {
+	console.log( 'TWO', this.x, this.y, this.z );
+
 	var length = this.length(),
 		x = this.x ? Math.sign( this.x ) * Math.pow( this.x, 2 ) / length : 0,
 		y = this.y ? Math.sign( this.y ) * Math.pow( this.y, 2 ) / length : 0,
 		z = this.z ? Math.sign( this.z ) * Math.pow( this.z, 2 ) / length : 0;
-
-	console.log( 'TWO', x, y, z );
 
 	return new Vector( x, y, z );
 };
