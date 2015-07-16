@@ -6,7 +6,7 @@ Connection with the server over SocketIO
 
 function Connect()
 {
-	this.socket = io( 'http://localhost:6666' );
+	this.socket = io( 'http://localhost:2222' );
 
 	this.socket.on( 'connect', function ()
 	{
@@ -15,7 +15,7 @@ function Connect()
 	}.bind( this ) );
 
 	this.setListeners();
-	errorHandler();
+	this.errorHandler();
 }
 
 Connect.prototype.play = function ()
@@ -33,6 +33,19 @@ Connect.prototype.setListeners = function ()
 			this.socket.close();
 	};
 };
+
+// Handle connection errors to the serve
+Connect.prototype.errorHandler = function ()
+{
+	// Attempt different servers if failed to connect to this one
+	this.socket.on( 'connect_error', function ()
+	{
+		if ( this.socket.io.uri === 'http://localhost:2222' )
+			this.socket.io.uri = 'http://agar.rileedesign.com:2222';
+		else
+			this.socket.io.uri = 'http://localhost:2222';
+	}.bind( this ) );
+}
 
 // On connect to server, create map and populate it with things
 function connectHandler( data )
@@ -74,19 +87,6 @@ function disconnectHandler()
 {
 
 	map.clear();
-}
-
-// Handle connection errors to the serve
-function errorHandler()
-{
-	// Attempt different servers if failed to connect to this one
-	this.socket.on( 'connect_error', function ()
-	{
-		if ( this.socket.io.uri === 'http://localhost:6666' )
-			this.socket.io.uri = 'http://agar.tankti.me:6666';
-		else
-			this.socket.io.uri = 'http://localhost:6666';
-	}.bind( this ) );
 }
 
 
