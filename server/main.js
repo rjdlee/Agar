@@ -174,7 +174,6 @@ function eventHandler( data )
 function toPosEventHandler( data, id )
 {
 	var player = map.players[ id ];
-	console.log( data );
 	player.setToPos( data[ 1 ].x, data[ 1 ].y );
 }
 
