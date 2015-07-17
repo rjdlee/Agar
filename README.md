@@ -1,6 +1,13 @@
 # Agar
 Based off of http://agar.io/. The goal of this project is to improve over the original version of AgarIO by optimizing performance on less powerful devices and allowing friends to play with one another easier.
 
+## Installation
+1. Download the files.
+2. Navigate to the root folder of the project.
+3. In Terminal (on OSX or Ubuntu), type in npm install.
+4. After that is done, type in node server.js
+5. In your web browser, go to localhost:3000 in your address bar.
+
 ## Overview of Application
 There are 2 components to this project, the vanilla Javascript frontend and the NodeJS backend with ExpressJS for routing and Socket.IO (with BISON encoding for smaller data sizes) for low latency communication between client and server. The vast majority of the game files are located in a common directory since the frontend and backend run a lot of shared code.
 
