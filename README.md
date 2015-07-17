@@ -16,15 +16,36 @@ The client uses canvas for the background grid, food, and viruses; and the DOM f
 ## Classes
 Each file contains a single class with a block at the top that looks like this:
 
-  if ( typeof window === 'undefined' )
+    if ( typeof window === 'undefined' )
     {
-	    var Vector = require( './vector' ),
-		    cfg = require( './config' );
-
-  	module.exports = Player;
-  }
+        var Vector = require( './vector' ),
+            cfg = require( './config' );
+        
+        module.exports = Player;
+    }
 
 When there is no window (backend), NodeJS can pick up on the classes declared in each file and also import other classes.
+
+## Game Implementation
+All the objects in the game (cells, viruses, and food) are based off the Circle class which contains functions for collision detection, movement, mass, and rendering. When rendering to the DOM, it uses the DOMElement class. 
+
+As mentioned, a cell is a player's circles or body and contain functions for collisions with food and viruses as well as between cells from the same player (solid body collision), cells from other players (overlapping body collision). It also contains functions for joining with other cells, exploding from a virus, and shooting food. RejoinTick is the time when the cell can rejoin its brethen. 
+
+Viruses are the spiky green circles which can be fed and split at other players or can split cells above a certain size.
+
+Food are small dots on the map that can be shot from a player's cells or eaten by players' cells'.
+
+Those are the base object classes. The Player class can contain many more cells and combines the functions of the cells into nextTick or nextTickNoCollisions to be run by the game loop. The Controller class inherits from the Player class and provides options for user input and a camera to follow the player.
+
+Avatar (player skins), BISON (binary JSON encoding), Color (random color generation), and Noise (Perlin and Simplex noise generator) classes are helper classes that should be pretty self explanatory. animationFrame.js is in the same boat and basically provides a function for the frontend to run a function around 60 times a second.
+
+Config contains constants for configuring the game balance and such.
+
+Map is the core of the game logic as it keeps track of all the players and has the game loop function.
+
+On the frontend, Connect contains encoding/ sending and decoding/ receiving of information using Socket.IO. UI contains functions for interacting with the DOM (mass, leaderboard, and menu). Menu initializes the canvases and contains the actual game loop functions which are activated by UI and use animationFrame.js.
+
+On the backend, main.js is similar to Connect. There isn't much more to the backend since the Map takes cares of most of the logic.
 
 ## TODO:
 * Finish implementing the quadtree so clients only receive data about objects near them
